@@ -71,11 +71,11 @@ def googleTest(lat, lng, radius):
               "internation": place.international_phone_number
           },
           "url": place.url,
-          # "photos": []
+          "photos": []
       }
-      # for photo in place.photos:
-      #     photo.get(maxheight=500, maxwidth=500)
-      #     place_details["photos"].append(photo.url)
+      for photo in place.photos:
+          photo.get(maxheight=500, maxwidth=500)
+          place_details["photos"].append(photo.url)
       places.append(place_details)
 
   return jsonify({
