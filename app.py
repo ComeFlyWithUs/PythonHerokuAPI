@@ -44,31 +44,33 @@ def helloWorld():
     }
   })
 
-@app.route('/google/<lat>/<lng>')
-def googleTest(lat, lng):
+@app.route('/google/<lat>/<lng>/<radius>')
+def googleTest(lat, lng, radius):
   """google test"""
   places = []
   query_result = google_places.nearby_search(
     lat_lng={"lat":lat, "lng": lng},
-    radius=20000, types=[types.TYPE_FOOD])
+    radius=int(radius), types=[types.TYPE_FOOD])
 
   if query_result.has_attributions:
       print(query_result.html_attributions)
 
   for place in query_result.places:
       place.get_details()
+      print(str(place.international_phone_number))
+      print(str(place.international_phone_number))
+      print(str(place.url))
       place_details = {
           "name": place.name,
           "position": {
               "lat": float(place.geo_location["lat"]),
               "lng": float(place.geo_location["lng"])
           },
-          # "details": place.details,
-          # "phone": {
-          #     "local": place.local_phone_number,
-          #     "internation": place.international_phone_number
-          # },
-          # "url": place.url,
+          "phone": {
+              "local": place.local_phone_number,
+              "internation": place.international_phone_number
+          },
+          "url": place.url,
           # "photos": []
       }
       # for photo in place.photos:
