@@ -20,6 +20,7 @@ def routes():
 
 @app.route('/', methods=['GET'])
 def index():
+  """Output the defined routes"""
   return jsonify({
     'success': True,
     'version': version,
@@ -28,6 +29,7 @@ def index():
 
 @app.route('/hello-world', methods=['GET'])
 def helloWorld():
+  """Hello world"""
   return jsonify({
     'success': True,
     'version': version,
